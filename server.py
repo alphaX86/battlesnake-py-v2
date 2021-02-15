@@ -21,7 +21,7 @@ class Battlesnake(object):
             "author": "alphaX86",  # TODO: Your Battlesnake Username
             "color": "#000000",  # TODO: Personalize
             "head": "gamer",  # TODO: Personalize
-            "tail": "leaf",  # TODO: Personalize
+            "tail": "sharp",  # TODO: Personalize
         }
 
     @cherrypy.expose
@@ -45,7 +45,20 @@ class Battlesnake(object):
 
         # Choose a random direction to move in
         possible_moves = ["up", "down", "left", "right"]
-        move = random.choice(possible_moves)
+        move = "left"
+
+        if data[you][head][x] == 0:
+            move = "up"
+        
+        if data[you][head][y] == 0:
+            move = "left"
+        
+        if data[you][head][x] == 1:
+            move = "right"
+
+        if data[you][head][y] == 1:
+            move = "down"
+        
 
         print(f"MOVE: {move}")
         return {"move": move}
